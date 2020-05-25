@@ -1,0 +1,17 @@
+{
+  "name": "usual-tools",
+  "version": "1.4.0",
+  "description": "some common tools for javascript to improve your development efficiency",
+  "main": "index.js",
+  "types": "./types/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "utils",
+    "tools"
+  ],
+  "author": "xtd <xtd18339197689@163.com>",
+  "license": "MIT"
+}
