@@ -1,6 +1,6 @@
 {
   "name": "usual-tools",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "some common tools for javascript to improve your development efficiency",
   "main": "index.js",
   "scripts": {

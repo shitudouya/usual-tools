@@ -1,3 +1,12 @@
+/*!
+ * usual-tools  a common javascript tools v1.6.0
+ * created by shitudouya
+ *
+ * GitHub: https://github.com/shitudouya/usual-tools
+ * Released under the MIT license
+ *
+ * Date: 2020/5/26
+ */
 (function (root, factory) {
   if (typeof module === "object" && typeof exports === "object") {
     module.exports = factory();
@@ -146,7 +155,6 @@
     if (source !== source) {
       return target !== target;
     }
-    return false;
   }
 
   function shuffle(arr) {
@@ -245,6 +253,19 @@
     return s;
   }
 
+  function curry(fn) {
+    var length = fn.length;
+    var params = [];
+    return function _curry() {
+      params = params.concat([].slice.call(arguments));
+      if (length <= params.length) {
+        return fn.apply(this, params);
+      } else {
+        return _curry;
+      }
+    };
+  }
+
   return {
     isPlainObject: isPlainObject,
     isEmpty: isEmpty,
@@ -262,6 +283,7 @@
     uuid: uuid,
     eqNaN: eqNaN,
     toArray: toArray,
-    repeat: repeat
+    repeat: repeat,
+    curry: curry
   };
 });

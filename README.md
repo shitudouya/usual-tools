@@ -1,8 +1,8 @@
-# usual-tools  v1.5.0
+# usual-tools  v1.6.0
 
 Some common tools for javascript to improve your development efficiency
 
-Browser support: Major Browsers and IE>=9
+Browser Support: Major Browsers and IE≥9
 
 ## Installation
 
@@ -21,7 +21,7 @@ yarn add  usual-tools
 use cdn
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/usual-tools@1.5.0/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/usual-tools@1.6.0/index.js"></script>
 ```
 
 ## Usage
@@ -39,7 +39,7 @@ import {type} from 'usual-tools'
 type([]) //array
 ```
 
-**CommonJS:**
+**CommonJS:**：
 
 ```javascript
 const {deepClone} = require('usual-tools')
@@ -48,7 +48,7 @@ let newObj = deepClone(obj);
 console.log(newObj);
 ```
 
-**Use in Browser:**
+**Browser:**
 
 ```html
 <!DOCTYPE html>
@@ -59,7 +59,7 @@ console.log(newObj);
   <title>Document</title>
 </head>
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/usual-tools@1.5.0/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/usual-tools@1.6.0/index.js"></script>
   <script>
    console.log(usualTools.type([]))
   </script>
@@ -148,7 +148,7 @@ window.addEventListener("scroll", debounce(load, 100));
 随机生成min到max之间的整数
 
 ```javascript
-console.log(randomNumber(10,50))
+console.log(randomNumber(10,50)) //23
 ```
 
 > throttle(fn,delay)
@@ -193,7 +193,7 @@ console.log(trimAll(' w sxt d')) //wsxtd
 ```javascript
 let obj = { name: "xtd", age: 23 };
 let newObj = deepClone(obj);
-console.log(newObj);
+console.log(newObj); //{ name: "xtd", age: 23 }
 ```
 
 > getUrlQueryObj(url)
@@ -213,7 +213,7 @@ console.log(eqNaN(NaN,NaN)) //true
 
 > uuid()
 
-生成UUID（唯一标识符），不保证不会出现相同字段，经过反复测试，重复的概率低于0.001%
+生成UUID（唯一标识符），不保证不会出现相同字段，重复的概率低于0.001%，如果使用于生产环境，推荐使用[uuid](https://www.npmjs.com/package/uuid)
 
 ```javascript
 console.log(uuid()) //19dade4f-e54f-40f2-97ad-e7326308f725
@@ -237,3 +237,15 @@ var arrayLike = {0:'hhh',1:'xxx',length:2}
 console.log(usualTools.repeat("ab",2)) //"abab"
 ```
 
+> curry(fn)
+
+通用的函数柯理化，fn为传入的函数
+
+```javascript
+var add = function (a,b,c,d) {
+  return a+b+c+d
+};
+console.log(curry(add)(1)(2)(3)(4)); //10
+console.log(curry(add)(1,2)(3)(4)); //10
+console.log(curry(add)(1,2,3)(4)); //10
+```
