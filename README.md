@@ -39,7 +39,7 @@ import {type} from 'usual-tools'
 type([]) //array
 ```
 
-**CommonJS:**：
+**CommonJS:**
 
 ```javascript
 const {deepClone} = require('usual-tools')
