@@ -1,6 +1,8 @@
-# usual-tools  v1.4.0
+# usual-tools  v1.5.0
 
 Some common tools for javascript to improve your development efficiency
+
+Browser support: Major Browsers and IE>=9
 
 ## Installation
 
@@ -19,13 +21,13 @@ yarn add  usual-tools
 use cdn
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/usual-tools@1.4.0/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/usual-tools@1.5.0/index.js"></script>
 ```
 
 ## Usage
 
 
-**ES6模块语法:**
+**ES6 module:**
 
 ```javascript
 import usualTools from 'usual-tools'
@@ -37,7 +39,7 @@ import {type} from 'usual-tools'
 type([]) //array
 ```
 
-**CommonJS语法**：
+**CommonJS:**：
 
 ```javascript
 const {deepClone} = require('usual-tools')
@@ -46,7 +48,7 @@ let newObj = deepClone(obj);
 console.log(newObj);
 ```
 
-**在浏览器中使用**：
+**Use in Browser:**
 
 ```html
 <!DOCTYPE html>
@@ -57,7 +59,7 @@ console.log(newObj);
   <title>Document</title>
 </head>
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/usual-tools@1.4.0/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/usual-tools@1.5.0/index.js"></script>
   <script>
    console.log(usualTools.type([]))
   </script>
@@ -216,3 +218,22 @@ console.log(eqNaN(NaN,NaN)) //true
 ```javascript
 console.log(uuid()) //19dade4f-e54f-40f2-97ad-e7326308f725
 ```
+
+> toArray(arr)
+
+将类数组对象转换为真正的数组，arr为传入的类数组对象，返回值为数组
+
+```javascript
+
+var arrayLike = {0:'hhh',1:'xxx',length:2}
+ console.log(usualTools.toArray(arrayLike)) //['hhh','xxx']
+```
+
+> repeat(target,n)
+
+返回一个新字符串，该字符串包含被连接在一起的指定数量的字符串的副本。target为传入的字符串，n为重复的次数
+
+```javascript
+console.log(usualTools.repeat("ab",2)) //"abab"
+```
+

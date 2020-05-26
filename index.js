@@ -8,31 +8,27 @@
   }
 })(this, function factory() {
   "use strict";
+  var objectToString = Object.prototype.toString;
+  var hasOwnProperty = Object.prototype.hasOwnProperty;
+  var classString = "Boolean Number String Function Array Date RegExp Object Error Symbol";
+  var class2type = {};
 
   function isPlainObject(obj) {
-    return Object.prototype.toString.call(obj) === "[object Object]";
+    return typeof obj === "object" && Object.getPrototypeOf(obj) === Object.prototype;
   }
 
   function isEmpty(target) {
-    return (
-      target === undefined ||
-      target === null ||
-      (typeof target === "object" && Object.keys(target).length === 0) ||
-      (typeof target === "string" && target.trim().length === 0)
-    );
+    return target === undefined || target === null || (typeof target === "object" && Object.keys(target).length === 0) || (typeof target === "string" && target.trim().length === 0);
   }
 
   function type(target) {
-    var class2type = {};
-    "Boolean Number String Function Array Date RegExp Object Error".split(" ").map(function (item, index) {
+    classString.split(" ").map(function (item, index) {
       class2type["[object " + item + "]"] = item.toLowerCase();
     });
     if (target == null) {
       return target + "";
     }
-    return typeof target === "object" || typeof target === "function"
-      ? class2type[Object.prototype.toString.call(target)] || "object"
-      : typeof target;
+    return typeof target === "object" || typeof target === "function" ? class2type[objectToString.call(target)] || "object" : typeof target;
   }
 
   function once(fn) {
@@ -47,7 +43,7 @@
   }
 
   function isFunction(obj) {
-    return Object.prototype.toString.call(obj) === "[object Function]";
+    return type(obj) === "function";
   }
 
   function eq(a, b, aStack, bStack) {
@@ -60,7 +56,7 @@
   }
 
   function deepEq(a, b, aStack, bStack) {
-    var toString = Object.prototype.toString;
+    var toString = objectToString;
     var className = toString.call(a);
     if (className !== toString.call(b)) return false;
     switch (className) {
@@ -80,12 +76,7 @@
       if (typeof a != "object" || typeof b != "object") return false;
       var aCtor = a.constructor,
         bCtor = b.constructor;
-      if (
-        aCtor == bCtor &&
-        !(isFunction(aCtor) && aCtor instanceof aCtor && isFunction(bCtor) && bCtor instanceof bCtor) &&
-        "constructor" in a &&
-        "constructor" in b
-      ) {
+      if (aCtor == bCtor && !(isFunction(aCtor) && aCtor instanceof aCtor && isFunction(bCtor) && bCtor instanceof bCtor) && "constructor" in a && "constructor" in b) {
         return false;
       }
     }
@@ -170,19 +161,19 @@
   }
 
   function countDown(time) {
-    var timeObj = {};
     var endTime = new Date(time).getTime();
     var nowTime = new Date().getTime();
-    var leftTime = endTime - nowTime;
-    var days = parseInt(leftTime / (60 * 60 * 24 * 1000));
-    var hours = parseInt((leftTime / (60 * 60 * 1000)) % 24);
-    var minutes = parseInt((leftTime / (60 * 1000)) % 60);
-    var seconds = parseInt((leftTime / 1000) % 60);
-    timeObj.days = days;
-    timeObj.hours = hours;
-    timeObj.minutes = minutes;
-    timeObj.seconds = seconds;
-    return timeObj;
+    var RemainingTime = endTime - nowTime;
+    var days = parseInt(RemainingTime / (60 * 60 * 24 * 1000));
+    var hours = parseInt((RemainingTime / (60 * 60 * 1000)) % 24);
+    var minutes = parseInt((RemainingTime / (60 * 1000)) % 60);
+    var seconds = parseInt((RemainingTime / 1000) % 60);
+    return {
+      days: days,
+      hours: hours,
+      minutes: minutes,
+      seconds: seconds
+    };
   }
 
   function trimAll(str) {
@@ -193,7 +184,7 @@
     if (typeof obj !== "object") return;
     var newObj = obj instanceof Array ? [] : {};
     for (var key in obj) {
-      if (obj.hasOwnProperty(key)) {
+      if (hasOwnProperty.call(obj, key)) {
         newObj[key] = typeof obj[key] === "object" ? deepCopy(obj[key]) : obj[key];
       }
     }
@@ -226,6 +217,34 @@
     return uuid;
   }
 
+  function toArray(arr) {
+    var result = [];
+    if (arr !== null) {
+      var i = arr.length;
+      if (i == null || typeof arr === "string" || isFunction(arr) || arr.setInterval) {
+        result[0] = arr;
+      } else {
+        while (i) {
+          result[--i] = arr[i];
+        }
+      }
+    }
+    return result;
+  }
+
+  function repeat(target, n) {
+    target = target + "";
+    if (n == 1) {
+      return target;
+    }
+    var s = repeat(target, Math.floor(n / 2));
+    s += s;
+    if (n % 2) {
+      s += target;
+    }
+    return s;
+  }
+
   return {
     isPlainObject: isPlainObject,
     isEmpty: isEmpty,
@@ -241,6 +260,8 @@
     trimAll: trimAll,
     getUrlQueryObj: getUrlQueryObj,
     uuid: uuid,
-    eqNaN: eqNaN
+    eqNaN: eqNaN,
+    toArray: toArray,
+    repeat: repeat
   };
 });
