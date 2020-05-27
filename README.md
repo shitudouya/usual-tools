@@ -1,4 +1,4 @@
-# usual-tools  v1.7.0
+# usual-tools  v1.8.0
 
 Some common tools for javascript to improve your development efficiency
 
@@ -21,7 +21,7 @@ yarn add usual-tools
 use cdn
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/usual-tools@1.7.0/lib/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/usual-tools@1.8.0/lib/index.js"></script>
 ```
 
 ## Usage
@@ -64,7 +64,7 @@ console.log(newObj);
   <title>Document</title>
 </head>
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/usual-tools@1.7.0/lib/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/usual-tools@1.8.0/lib/index.js"></script>
   <script>
    console.log(usualTools.type([]))
   </script>
