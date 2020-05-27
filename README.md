@@ -1,4 +1,4 @@
-# usual-tools  v1.6.0
+# usual-tools  v1.7.0
 
 Some common tools for javascript to improve your development efficiency
 
@@ -15,13 +15,13 @@ npm install usual-tools --save
 yarn
 
 ```
-yarn add  usual-tools
+yarn add usual-tools
 ```
 
 use cdn
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/usual-tools@1.6.0/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/usual-tools@1.7.0/index.js"></script>
 ```
 
 ## Usage
@@ -37,6 +37,11 @@ usualTools.type('1') //string
 
 import {type} from 'usual-tools'
 type([]) //array
+
+
+// demand loading 按需加载
+
+import getBrowser from "usual-tools/lib/getBrowser";
 ```
 
 **CommonJS:**
@@ -59,7 +64,7 @@ console.log(newObj);
   <title>Document</title>
 </head>
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/usual-tools@1.6.0/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/usual-tools@1.7.0/index.js"></script>
   <script>
    console.log(usualTools.type([]))
   </script>
@@ -248,4 +253,33 @@ var add = function (a,b,c,d) {
 console.log(curry(add)(1)(2)(3)(4)); //10
 console.log(curry(add)(1,2)(3)(4)); //10
 console.log(curry(add)(1,2,3)(4)); //10
+```
+
+> getBrowser()
+
+获取当前浏览器信息，包括类型和版本号
+
+基于jQuery.browser改造。支持IE6~11、Firefox、Opera 15+、Edge Safari、Chrome
+
+```javascript
+getBrowser() 
+/*
+{
+  chrome: true
+  desktop: true
+  name: "chrome"
+  platform: "win"
+  version: "83.0.4103.61"
+  versionNumber: 83
+  webkit: true
+  win: true
+}
+*/
+```
+> flatArray(arr)
+
+数组扁平化。arr为传入的多维数组
+
+```javascript
+flatArray([1,2,3,[4,5,[6,7]]]) //[1,2,3,4,5,6,7]
 ```
