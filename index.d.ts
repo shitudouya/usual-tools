@@ -19,6 +19,7 @@ declare namespace usualTools {
   export function curry(fn: () => any): any;
   export function getBrowser(): object;
   export function flatArray(arr: any[]): any[];
+  export function pad(source:string,length:number,chars:string):string;
 }
 export = usualTools;
 export as namespace usualTools;

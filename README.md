@@ -1,4 +1,4 @@
-# usual-tools  v1.8.0
+# usual-tools  v1.9.0
 
 Some common tools for javascript to improve your development efficiency
 
@@ -21,7 +21,7 @@ yarn add usual-tools
 use cdn
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/usual-tools@1.8.0/lib/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/usual-tools@1.9.0/lib/index.js"></script>
 ```
 
 ## Usage
@@ -64,7 +64,7 @@ console.log(newObj);
   <title>Document</title>
 </head>
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/usual-tools@1.8.0/lib/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/usual-tools@1.9.0/lib/index.js"></script>
   <script>
    console.log(usualTools.type([]))
   </script>
@@ -282,4 +282,17 @@ getBrowser()
 
 ```javascript
 flatArray([1,2,3,[4,5,[6,7]]]) //[1,2,3,4,5,6,7]
+```
+
+> pad(source,length,chars)
+
+用另一个字符串填充当前字符串，以便产生的字符串达到给定的长度，source为当前的字符串，length为指定的长度，chars为填充的字符，当length为
+
+正数的时候从当前字符串的开始(左侧)开始填充，为负数时从右侧开始填充。如果不指定填充的字符，则默认填充空白字符。
+
+```javascript
+console.log(pad("3月", 3, "0")); // "03月"
+console.log(pad("3月", -3, "0")); //"3月0"
+console.log(pad("3月", -4));    //"3月  "
+console.log(pad("3月", 4)); //"  3月"
 ```
